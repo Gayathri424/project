@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantPulse | Signup</title>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="style-signup.css">
+    <link rel="icon" type="image/jpg" href="./images/Life.jpg">
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+            <h1 class="login">Sign Up</h1>
+            <form method="post" action="/user/signup" id="signupForm" onsubmit="return validateEmail()">
+                <div class="input-group">
+                    <input type="text" placeholder="Username" required name="username">
+                    <i class="bx bxs-user"></i>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email" required name="email">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required name="password">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+                <button class="submit-btn" type="submit">Sign Up</button>
+                <div class="divider">
+                    <span>Or</span>
+                </div>
+                <button class="google-btn">
+                    <i class="bx bxl-google"></i> Sign Up with Google
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function validateEmail() {
+        const emailInput = document.getElementById("email").value;
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+        if (!emailPattern.test(emailInput)) {
+            alert("Please enter a valid email address.");
+            return false; // Prevent form submission
+        }
+        return true; // Allow form submission
+    }
+</script>
+</html>

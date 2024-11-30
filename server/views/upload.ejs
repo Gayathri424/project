@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="diagnostic" class="section">
+        <div class="content">
+            <div class="info">
+                <h2>Upload & Diagnose</h2>
+                <p>Use the form below to upload an image of your plant for diagnosis. Make sure the image is clear, well-lit, and focuses on the affected areas of the plant.Once uploaded, our AI will analyze the image and provide a detailed report on the health of your plant.</p>
+                <form id="diagnoseForm" enctype="multipart/form-data">
+                    <input type="file" class="form-control" id="imageInput" accept="image/*" name="image">
+                    <button type="submit" class="info-btn" >Diagnose</button>
+                </form>
+                <p>Supported formats: JPG, PNG | Maximum size: 5MB</p>
+                <!-- Result Section -->
+                <div id="result" class="mt-4"></div> <!-- Result will be displayed here -->
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="section">
+        <div class="content">
+            <div class="info">
+                <h2>Diagnosis Results</h2>
+                <p id="diseaseResult">Upload an image and click on Diagnose to see the results here.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.getElementById('diagnoseForm');
+        const imageInput = document.getElementById('imageInput');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const formData = new FormData(form);
+            formData.append('image', imageInput.files[0]);
+            console.log(formData.get('image')); 
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData,
+                });
+                console.log(response);
+                if (response.ok) {
+                    const data = await response.json();
+                    const { label, score, diseaseDetails } = data;
+                    const { description, possibleSteps, imageUrl, supplements } = diseaseDetails;
+
+                    // Display the prediction and disease details
+                    resultDiv.innerHTML = `
+                        <h3>Diagnosis Result</h3>
+                        <p><strong>Disease:</strong> ${label}</p>
+                        <p><strong>Confidence:</strong> ${(score * 100).toFixed(2)}%</p>
+                        <p><strong>Description:</strong> ${description || 'No description available.'}</p>
+                        <p><strong>Possible Steps:</strong> ${possibleSteps || 'No steps provided.'}</p>
+                        <img src="${imageUrl || '#'}" alt="${label}" style="max-width: 100%; margin-top: 10px;" onerror="this.style.display='none';">
+                        
+                        <h4>Supplements</h4>
+                        <ul>
+                            ${
+                              (supplements && supplements.length > 0)
+                                ? supplements.map(supp => `
+                                    <li>
+                                        <strong>${supp.name}</strong><br>
+                                        <img src="${supp.image}" alt="${supp.name}" style="max-width: 100px;" onerror="this.style.display='none';"><br>
+                                        <a href="${supp.buyLink}" target="_blank">Buy Now</a>
+                                    </li>
+                                  `).join('')
+                                : '<p>No supplements available for this disease.</p>'
+                            }
+                        </ul>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<p class="text-danger">Error: Could not process the image.</p>';
+                }
+            } catch (error) {
+                console.log('Error during diagnosis:', error);
+                resultDiv.innerHTML = '<p class="text-danger">Error: Something went wrong with the diagnosis.</p>';
+            }
+        });
+    </script>
+    
+</body>
+</html>

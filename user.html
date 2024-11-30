@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Icon Hover Menu</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <style>
+        .user-icon {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            
+        }
+
+        .user-menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            width: 120px;
+        }
+
+        .user-menu a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: white;
+            
+        }
+
+        .user-menu a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .user-icon:hover a.active{
+            
+        }
+
+        .user-icon:hover .user-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="user-icon">
+    <span>&#128100;</span>
+    <div class="user-menu">
+        <a href="#sign-up">Sign Up</a>
+        <a href="#login">Login</a>
+        <a href="#history">History</a>
+    </div>
+    <div class="dropdown">
+        <button class="btn toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">sign-up</a></li>
+          <li><a class="dropdown-item" href="#">login</a></li>
+          <li><a class="dropdown-item" href="#">History</a></li>
+        </ul>
+      </div>
+</div>
+
+ 
+  <script>
+    // Ensure that the JavaScript is properly linked and working
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("Bootstrap JS is loaded.");
+    });
+</script>
+</body>
+</html>

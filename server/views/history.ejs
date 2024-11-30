@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlantPulse | History</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpg" href="images/Life.jpg">
+
+</head>
+<body>
+  <div id="history">
+    <h2>Upload History</h2>
+    <ul id="historyList"></ul>
+  </div>
+  <script>
+    async function fetchHistory() {
+        const historyList = document.getElementById('historyList');
+        historyList.innerHTML = 'Loading...'; // Show a loading indicator
+
+        
+            const response = await fetch('/history', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response);
+          try{
+            if (response.ok) {
+                const uploads = await response.json();
+
+                if (uploads.length === 0) {
+                    historyList.innerHTML = '<p>No history available.</p>';
+                } else {
+                    historyList.innerHTML = uploads.map(upload => `
+                        <li>
+                            <strong>Uploaded Image:</strong> ${upload.fileName}<br>
+                            <strong>Diagnosis:</strong> ${upload.result.label}<br>
+                            <strong>Confidence:</strong> ${(upload.result.score * 100).toFixed(2)}%<br>
+                            <strong>Date:</strong> ${new Date(upload.createdAt).toLocaleString()}<br>
+                            <img src="${upload.imageUrl}" alt="Uploaded Image" style="max-width: 150px; margin-top: 5px;" onerror="this.style.display='none';">
+                        </li>
+                        <hr>
+                    `).join('');
+                }
+            } else {
+                historyList.innerHTML = '<p class="text-danger">Failed to load history.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching history:', error);
+            historyList.innerHTML = '<p class="text-danger">Something went wrong.</p>';
+        }
+    }
+
+    // Fetch history when the page loads
+    document.addEventListener('DOMContentLoaded', fetchHistory);
+  </script>
+
+
+</body>
+</html>

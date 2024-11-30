@@ -1,0 +1,171 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('/images/bg-image.png') no-repeat center center/cover;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.form {
+    width: 100%;
+}
+
+.login {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0e573b;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #0e573b;
+    box-shadow: 0 0 5px rgba(14, 87, 59, 0.5);
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #0e573b;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #0c482e;
+}
+
+.forgot {
+    margin-top: 10px;
+}
+
+.forgot a {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.divider {
+    position: relative;
+    margin: 1.5rem 0;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.divider span {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: #ddd;
+    z-index: 1;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.google-btn i {
+    margin-right: 10px;
+    color: #db4437;
+}
+
+.google-btn:hover {
+    background: #ddd;
+}
+
+.signup-link {
+    margin-top: 1.5rem;
+}
+
+.signup-link a {
+    color: #0e573b;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .login {
+        font-size: 1.8rem;
+    }
+
+    .submit-btn, .google-btn {
+        font-size: 0.9rem;
+    }
+}

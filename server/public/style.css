@@ -1,0 +1,203 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+body {
+    overflow-x: hidden;
+    background-image: url('/images/homeimg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+/* Title Styles */
+.leaf, .life {
+    font-family: "Qwitcher Grypen", cursive;
+    font-weight: 900;
+}
+.leaf {
+    color: rgb(167, 148, 112);
+    font-size: 45px;
+    letter-spacing: 2px;
+    line-height: 35px;
+    margin-bottom: 20px;
+}
+.life {
+    color: #653a1c;
+    margin-left: 70px;
+    font-size: 40px;
+}
+/* Section Syles */
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 60px 20px;
+}
+/* Header styles*/
+header {
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+header .navbar {
+    width: 100%;
+}
+header nav .container #navbarNav .items li a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    padding: 2px 15px;
+    border-radius: 20px;
+}
+header nav .container #navbarNav .items li a:hover {
+    font-weight: bold;
+    font-size: x-large;
+}
+/* Content Styles */
+.content {
+    margin: auto;
+    text-align: left;
+    padding-right: 30rem;
+    padding-left: 20px;
+}
+.content .info h2 {
+    color: #8c6e46;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    line-height: 1.1;
+}
+.content .info h2 span {
+    color: #8C6E46;
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+.content .info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+.content .info-btn,
+.content .image-btn {
+    color: #fff;
+    background: #0e573b;
+    opacity: 0.75;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+.content .info-btn:hover,
+.content .image-btn:hover {
+    background: #0e573b;
+    opacity: 1;
+}
+/* User Icon Styles */
+.user-icon {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 30px;
+}
+.user-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 120px;
+    font-size: 24px;
+}
+.user-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: white;
+}
+.user-menu a:hover {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    font-size: x-large;
+}
+.user-icon:hover .user-menu {
+    display: block;
+}
+/* Responsive styles */
+@media (max-width: 960px) {
+    .content {
+        padding-right: 2rem;
+        padding-left: 2rem;
+        max-width: 100%;
+    }
+    .header .navbar {
+        display: none;
+    }
+    /* Responsive Navigation */
+    #check:checked ~ header .navigation {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        justify-content: left;
+        background: rgba(199, 236, 149, 0.9);
+    }
+    #check:checked ~ header .navigation a {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    /* Label for Toggle Menu */
+    label {
+        display: block;
+        font-size: 25px;
+        cursor: pointer;
+    }
+}
+@media (max-width: 768px) {
+    .content .info h2 {
+        font-size: 2.5rem;
+    }
+    .content .info h2 span {
+        font-size: 2.3rem;
+    }
+    .content .info p {
+        font-size: 1rem;
+    }
+    .content {
+        padding: 15px;
+    }
+}
+@media (max-width: 480px) {
+    .content .info h2 {
+        font-size: 2rem;
+    }
+    .content .info h2 span {
+        font-size: 1.8rem;
+    }
+    .content .info p {
+        font-size: 0.9rem;
+    }
+    .content {
+        padding: 10px;
+    }
+}
